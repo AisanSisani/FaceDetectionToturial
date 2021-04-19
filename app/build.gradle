@@ -15,6 +15,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+        //different from the externalNativeBuilt down here just configuration options
         externalNativeBuild {
             cmake {
                 arguments "-DOpenCV_DIR=" + project(':opencv').projectDir + "/native/jni",
@@ -36,6 +37,13 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    //giving the path for the native code's built script
+    externalNativeBuild {
+        cmake {
+            path file('jni/CMakeLists.txt')
+        }
+    }
+
     /*sourceSets {
         main {
             jni {
@@ -43,11 +51,7 @@ android {
             }
         }
     }*/
-    externalNativeBuild {
-        cmake {
-            path 'jni/CMakeLists.txt'
-        }
-    }
+
 }
 
 dependencies {
